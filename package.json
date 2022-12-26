@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/renesdwir/review-nodejs/issues"
   },
-  "homepage": "https://github.com/renesdwir/review-nodejs#readme"
+  "homepage": "https://github.com/renesdwir/review-nodejs#readme",
+  "dependencies": {
+    "faker": "^6.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
+  }
 }
