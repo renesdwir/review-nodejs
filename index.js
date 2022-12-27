@@ -16,6 +16,14 @@ app.get("/user/:id", (req, res) => {
     res.send("No data can be display");
   }
 });
+app.get("/user", (req, res) => {
+  const name = req.query.name;
+  const age = req.query.age;
+  if (name && age) res.send(`Hai ${name}, aku tebak umurmu ${age} tahun`);
+  else {
+    res.send("something wrong");
+  }
+});
 app.post("/user", (req, res) => {
   res.send("Got a POST request");
 });
