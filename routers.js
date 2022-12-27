@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
-router.get("/", (req, res) => {
+const middleware = function (req, res, next) {
+  console.log("ini middleware");
+  next();
+};
+router.get("/", middleware, (req, res) => {
   res.send("Hello World!");
 });
 router.get("/user/:id", (req, res) => {
