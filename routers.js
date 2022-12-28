@@ -7,7 +7,7 @@ const middleware = function (req, res, next) {
 router.get("/", middleware, (req, res) => {
   res.send("Hello World!");
 });
-router.get("/user/:id", (req, res) => {
+router.get("/user/:id", middleware, (req, res) => {
   const id = req.params.id;
   console.log(id);
   if (id === "1") {
@@ -18,7 +18,7 @@ router.get("/user/:id", (req, res) => {
     res.send("No data can be display");
   }
 });
-router.get("/user", (req, res) => {
+router.get("/user", middleware, (req, res) => {
   const name = req.query.name;
   const age = req.query.age;
   if (name && age) res.send(`Hai ${name}, aku tebak umurmu ${age} tahun`);
@@ -26,13 +26,13 @@ router.get("/user", (req, res) => {
     res.send("something wrong");
   }
 });
-router.post("/user", (req, res) => {
+router.post("/user", middleware, (req, res) => {
   res.send("Got a POST request");
 });
-router.put("/user", (req, res) => {
+router.put("/user", middleware, (req, res) => {
   res.send("Got a PUT request at /user");
 });
-router.delete("/user", (req, res) => {
+router.delete("/user", middleware, (req, res) => {
   res.send("Got a DELETE request at /user");
 });
 
