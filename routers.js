@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+//https://expressjs.com/en/guide/using-middleware.html
 const middleware = function (req, res, next) {
   console.log("ini middleware");
   next();
