@@ -9,7 +9,6 @@ MongoClient.connect("mongodb://localhost:27017", (err, client) => {
     .find()
     .toArray((err, result) => {
       if (err) throw err;
-
       console.log(result);
     });
 });
