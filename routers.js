@@ -68,5 +68,26 @@ router.put("/users/:id", async (req, res) => {
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+router.delete("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (connection) {
+      const db = connection.db();
+      const users = await db
+        .collection("users")
+        .deleteOne({ _id: ObjectId(id) });
+      console.log(users);
+      if (users.deletedCount === 1) {
+        res.send({ message: "Data deleted successfully" });
+      } else {
+        res.send({ message: "Delete data failed" });
+      }
+    } else {
+      res.send({ message: "Connection database failed" });
+    }
+  } catch (error) {
+    res.send({ message: error.message || "Internal Server Error" });
+  }
+});
 
 module.exports = router;
