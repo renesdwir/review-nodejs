@@ -1,4 +1,5 @@
 const express = require("express");
+const { ObjectId } = require("mongodb");
 const router = express.Router();
 const connection = require("./connection");
 
@@ -30,6 +31,35 @@ router.post("/users", async (req, res) => {
         res.send({ message: "Data saved successfully" });
       } else {
         res.send({ message: "Save data failed" });
+      }
+    } else {
+      res.send({ message: "Connection database failed" });
+    }
+  } catch (error) {
+    res.send({ message: error.message || "Internal Server Error" });
+  }
+});
+router.put("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, age, status } = req.body;
+    if (connection) {
+      const db = connection.db();
+      const users = await db.collection("users").updateOne(
+        { _id: ObjectId(id) },
+        {
+          $set: {
+            name,
+            age,
+            status,
+          },
+        }
+      );
+      console.log("<<<<", users);
+      if (users.modifiedCount === 1) {
+        res.send({ message: "Data edited successfully" });
+      } else {
+        res.send({ message: "Edit data failed" });
       }
     } else {
       res.send({ message: "Connection database failed" });
