@@ -19,7 +19,8 @@
   "homepage": "https://github.com/renesdwir/review-nodejs#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "faker": "^6.6.6"
+    "faker": "^6.6.6",
+    "mongodb": "^4.13.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"
