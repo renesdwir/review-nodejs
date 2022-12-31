@@ -20,11 +20,21 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchema);
+//findone
+// (async () => {
+//   const users = await User.findOne({ _id: "63aee8a6fefca5a64b7cee17" });
+//   console.log(users);
+// })();
 
-(async () => {
-  const users = await User.findOne({ _id: "63aee8a6fefca5a64b7cee17" });
-  console.log(users);
-})();
+//post
+// (async () => {
+//   const newUser = await User.create({
+//     name: "Nabila",
+//     age: 20,
+//     status: "active",
+//   });
+//   console.log(newUser);
+// })();
 
 // silence.save((err, result) => {
 //   if (err) return console.log(err);
