@@ -37,11 +37,22 @@ const User = mongoose.model("User", userSchema);
 // })();
 
 //post
-(async () => {
-  const newUser = new User();
-  newUser.name = "Joko";
-  newUser.age = 30;
-  const insert = await newUser.save();
+// (async () => {
+//   const newUser = new User();
+//   newUser.name = "Joko";
+//   newUser.age = 30;
+//   const insert = await newUser.save();
 
-  console.log(insert);
+//   console.log(insert);
+// })();
+
+//post
+(async () => {
+  const newUser = await User.updateOne(
+    { _id: "63b050599c88e5f2c8998366" },
+    {
+      name: "Joko Tingkir",
+    }
+  );
+  console.log(newUser);
 })();
