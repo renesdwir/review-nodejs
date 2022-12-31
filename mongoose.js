@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchema);
+//get all data
+(async () => {
+  const users = await User.find();
+  console.log(users);
+})();
 //findone
 // (async () => {
 //   const users = await User.findOne({ _id: "63aee8a6fefca5a64b7cee17" });
@@ -47,12 +52,12 @@ const User = mongoose.model("User", userSchema);
 // })();
 
 //post
-(async () => {
-  const newUser = await User.updateOne(
-    { _id: "63b050599c88e5f2c8998366" },
-    {
-      name: "Joko Tingkir",
-    }
-  );
-  console.log(newUser);
-})();
+// (async () => {
+//   const newUser = await User.updateOne(
+//     { _id: "63b050599c88e5f2c8998366" },
+//     {
+//       name: "Joko Tingkir",
+//     }
+//   );
+//   console.log(newUser);
+// })();
