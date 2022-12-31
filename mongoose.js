@@ -64,9 +64,15 @@ const User = mongoose.model("User", userSchema);
 // })();
 
 //update with save()
+// (async () => {
+//   const updateUser = await User.findById("63b050599c88e5f2c8998366");
+//   updateUser.name = "Joko Kendil";
+//   const update = await updateUser.save();
+//   console.log(update);
+// })();
+
+//Delete
 (async () => {
-  const updateUser = await User.findById("63b050599c88e5f2c8998366");
-  updateUser.name = "Joko Kendil";
-  const update = await updateUser.save();
-  console.log(update);
+  const deleteUser = await User.deleteOne({ _id: "63b050599c88e5f2c8998366" });
+  console.log(deleteUser);
 })();
