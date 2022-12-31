@@ -6,20 +6,10 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/db_latihan");
-
+  console.log("Listening Database ...");
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  age: Number,
-  status: {
-    type: String,
-    enum: ["active", "non active"],
-    default: "non active",
-  },
-});
 
-const User = mongoose.model("User", userSchema);
 //get all data
 // (async () => {
 //   const users = await User.find();
@@ -34,11 +24,7 @@ const User = mongoose.model("User", userSchema);
 
 //post
 // (async () => {
-//   const newUser = await User.create({
-//     name: "Nabila",
-//     age: 20,
-//     status: "active",
-//   });
+//   const newUser = await User.create({ name: "jannah", age: "20" });
 //   console.log(newUser);
 // })();
 
