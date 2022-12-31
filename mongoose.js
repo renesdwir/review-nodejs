@@ -36,7 +36,12 @@ const User = mongoose.model("User", userSchema);
 //   console.log(newUser);
 // })();
 
-// silence.save((err, result) => {
-//   if (err) return console.log(err);
-//   return console.log(result);
-// });
+//post
+(async () => {
+  const newUser = new User();
+  newUser.name = "Joko";
+  newUser.age = 30;
+  const insert = await newUser.save();
+
+  console.log(insert);
+})();
