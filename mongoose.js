@@ -10,7 +10,7 @@ async function main() {
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 const userSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   age: Number,
   status: {
     type: String,
@@ -72,7 +72,7 @@ const User = mongoose.model("User", userSchema);
 // })();
 
 //Delete
-(async () => {
-  const deleteUser = await User.deleteOne({ _id: "63b050599c88e5f2c8998366" });
-  console.log(deleteUser);
-})();
+// (async () => {
+//   const deleteUser = await User.deleteOne({ _id: "63b050599c88e5f2c8998366" });
+//   console.log(deleteUser);
+// })();
