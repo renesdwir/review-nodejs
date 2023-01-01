@@ -31,6 +31,20 @@ router.get("/users/:id", async (req, res) => {
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+router.post("/users", async (req, res) => {
+  try {
+    const { name, age, status } = req.body;
+    const newUser = await User.create({
+      name,
+      age,
+      status,
+    });
+    res.send({ data: newUser });
+  } catch (error) {
+    console.log(error.message);
+    res.send({ message: error.message || "Internal Server Error" });
+  }
+});
 
 // router.get("/users", async (req, res) => {
 //   try {
