@@ -45,6 +45,34 @@ router.post("/users", async (req, res) => {
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+router.put("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, age, status } = req.body;
+
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.send({ mesage: "Invalid user id" });
+    }
+    const updateUser = await User.updateOne(
+      { _id: id },
+      {
+        name,
+        age,
+        status,
+      },
+      { runValidators: true }
+    );
+
+    if (updateUser.modifiedCount === 1 || updateUser.matchedCount === 1) {
+      res.send({ data: updateUser });
+    } else {
+      res.send({ message: "User not found" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.send({ message: error.message || "Internal Server Error" });
+  }
+});
 
 // router.get("/users", async (req, res) => {
 //   try {
