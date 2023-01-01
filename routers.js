@@ -13,6 +13,7 @@ router.get("/users", async (req, res) => {
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+
 router.get("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -31,6 +32,7 @@ router.get("/users/:id", async (req, res) => {
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+
 router.post("/users", async (req, res) => {
   try {
     const { name, age, status } = req.body;
@@ -39,12 +41,13 @@ router.post("/users", async (req, res) => {
       age,
       status,
     });
-    res.send({ data: newUser });
+    res.send({ data: newUser, message: "Users created successfully" });
   } catch (error) {
     console.log(error.message);
     res.send({ message: error.message || "Internal Server Error" });
   }
 });
+
 router.put("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -64,7 +67,26 @@ router.put("/users/:id", async (req, res) => {
     );
 
     if (updateUser.modifiedCount === 1 || updateUser.matchedCount === 1) {
-      res.send({ data: updateUser });
+      res.send({ data: updateUser, message: "Users updated successfully" });
+    } else {
+      res.send({ message: "User not found" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.send({ message: error.message || "Internal Server Error" });
+  }
+});
+
+router.delete("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.send({ mesage: "Invalid user id" });
+    }
+    const deleteUser = await User.deleteOne({ _id: id });
+    if (deleteUser.deletedCount === 1) {
+      res.send({ data: deleteUser, message: "User deleted successfully" });
     } else {
       res.send({ message: "User not found" });
     }
